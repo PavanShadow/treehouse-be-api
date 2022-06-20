@@ -38,4 +38,6 @@ app.post('/delete', async (req, res) => {
     res.send({msg: 'item deleted'})
 })
 
-app.listen(4000, ()=>console.log('app is runnning on port 4000'))
+app.listen(4000, () => {
+  console.log("app is runnning on port 4000");
+});
