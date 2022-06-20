@@ -10,6 +10,7 @@ app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Tree House Api!");
+  res.end();
 });
 
 app.get("/all", async (req, res) => {
