@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const Item = require('./config');
 
+const port = process.env.PORT || 4000;
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -19,26 +21,26 @@ app.get("/all", async (req, res) => {
   res.send(list);
 });
 
-app.post('/create', async (req, res) => {
-    const data = req.body;
-    await Item.add(data)
-    res.send({msg: 'item added'})
-})
+app.post("/create", async (req, res) => {
+  const data = req.body;
+  await Item.add(data);
+  res.send({ msg: "item added" });
+});
 
-app.post('/update', async (req, res) => {
-    const id = req.body.id;
-    delete req.body.id;
-    const data = req.body;
-    await Item.doc(id).update(data)
-    res.send({msg: 'item updated'})
-})
+app.post("/update", async (req, res) => {
+  const id = req.body.id;
+  delete req.body.id;
+  const data = req.body;
+  await Item.doc(id).update(data);
+  res.send({ msg: "item updated" });
+});
 
-app.post('/delete', async (req, res) => {
-    const id = req.body.id;
-    await Item.doc(id).delete(id)
-    res.send({msg: 'item deleted'})
-})
+app.post("/delete", async (req, res) => {
+  const id = req.body.id;
+  await Item.doc(id).delete(id);
+  res.send({ msg: "item deleted" });
+});
 
-app.listen(4000, () => {
-  console.log("app is runnning on port 4000");
+app.listen(port, () => {
+  console.log(`app is runnning on port ${port}`);
 });
