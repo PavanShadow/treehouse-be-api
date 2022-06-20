@@ -8,11 +8,15 @@ app.use(cors());
 
 //apis
 
-app.get('/', async (req, res) => {
-    const snapshot = await Item.get();
-    const list = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-    res.send(list)
-})
+app.get("/", (req, res) => {
+  res.send("Tree House Api!");
+});
+
+app.get("/all", async (req, res) => {
+  const snapshot = await Item.get();
+  const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  res.send(list);
+});
 
 app.post('/create', async (req, res) => {
     const data = req.body;
